@@ -1,0 +1,10 @@
+{
+  "name": "twitterBot",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "twitter": "^1.7.1"
+  }
+}
