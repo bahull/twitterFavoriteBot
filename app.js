@@ -26,17 +26,19 @@ const Twitter = new TwitterPackage(secret);
 
 //opens twitter stream, consistently looking "track" and whatever its value is. When that is found, fires function which then hearts that tweet id
 
-Twitter.stream('statuses/filter', {track: '#100DaysofCode'}, function(stream) {
+Twitter.stream('statuses/filter', {track: '#100DaysofCode, #codeNewbie'}, function(stream) {
     stream.on('data', function(tweet) {
-      console.log(tweet.text);
-
+    
+        if ( tweet.favorited === true){
+            console.log("Caught a favorited one!!");
+          } else {
       Twitter.post(`favorites/create`, {id: tweet.id_str},  function(error, tweet, response){
         if(error){
           console.log(error);
         }
-        console.log("success!")
+        console.log("success!", tweet.text)
       });
-
+    }
     });
   
     stream.on('error', function(error) {
